@@ -4,4 +4,4 @@ from .engine import Change, SyncResult, plan, sync
 from .filters import IgnoreRules
 
 __all__ = ["Change", "SyncResult", "IgnoreRules", "plan", "sync"]
-__version__ = "0.1.0"
+__version__ = "0.2.0"
