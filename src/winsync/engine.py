@@ -16,7 +16,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .filters import IgnoreRules
+from .filters import IgnoreRules, with_ignore_file
 
 TRASH_DIR = ".thung-rac"
 MTIME_TOLERANCE = 2.0  # FAT/exFAT chỉ lưu thời gian chính xác tới 2 giây
@@ -73,7 +73,7 @@ def _differs(src: os.stat_result, dst: Path) -> bool:
 
 def plan(source: Path, dest: Path, rules: IgnoreRules | None = None, trash_missing: bool = True) -> list[Change]:
     """Trả về danh sách thay đổi cần làm, chưa chạm vào file nào."""
-    rules = rules or IgnoreRules()
+    rules = with_ignore_file(rules or IgnoreRules(), source)
     source, dest = Path(source), Path(dest)
     changes: list[Change] = []
     seen: set[str] = set()

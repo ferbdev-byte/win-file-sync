@@ -5,6 +5,7 @@ from __future__ import annotations
 import fnmatch
 import re
 from dataclasses import dataclass, field
+from pathlib import Path
 
 DEFAULT_PATTERNS = (
     "~$*",          # file khoá tạm của Word/Excel
@@ -42,3 +43,19 @@ class IgnoreRules:
                 if fnmatch.fnmatch(part.lower(), pat.lower()):
                     return True
         return bool(self.block_sensitive and SENSITIVE.search(parts[-1]))
+
+
+IGNORE_FILE = ".winsyncignore"
+
+
+def with_ignore_file(rules: IgnoreRules, source: str | Path) -> IgnoreRules:
+    """Thêm mẫu bỏ qua từ file `.winsyncignore` nằm trong thư mục nguồn (mỗi dòng một mẫu, `#` là chú thích).
+
+    Nhờ vậy mỗi người tự quyết thư mục nháp nào của mình không cần đẩy lên máy chủ.
+    """
+    f = Path(source) / IGNORE_FILE
+    if not f.is_file():
+        return rules
+    lines = (ln.strip() for ln in f.read_text(encoding="utf-8-sig").splitlines())
+    extra = [ln for ln in lines if ln and not ln.startswith("#")]
+    return IgnoreRules(rules.patterns, [*rules.extra, *extra], rules.block_sensitive)

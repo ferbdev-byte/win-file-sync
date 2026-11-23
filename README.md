@@ -60,6 +60,14 @@ Tạo `config.json` (xem [examples/config.json](examples/config.json)):
 winsync run -c config.json --dry-run   # xem trước sẽ chép gì
 winsync run -c config.json             # chạy một lượt
 winsync watch -c config.json           # chạy liên tục mỗi 5 phút
+```
+
+Mỗi người có thể tự đặt file `.winsyncignore` trong thư mục của mình, mỗi dòng một mẫu (giống `.gitignore`) để bỏ qua thư mục nháp hay file không cần đẩy lên:
+
+```
+# thư mục nháp của tôi
+Ban nhap
+*.psd
 winsync plan -c config.json            # xuất kế hoạch dạng JSON cho công cụ khác
 ```
 
