@@ -1,0 +1,12 @@
+{
+  "hub": "D:/MayChu/NhanVien",
+  "users": {
+    "an": "\\\\PC-AN/LamViec",
+    "binh": "\\\\PC-BINH/LamViec",
+    "ke-toan": "C:/Users/KeToan/Documents/LamViec"
+  },
+  "ignore": ["*.bak", "Ban nhap"],
+  "verify": true,
+  "trash_days": 30,
+  "interval": 300
+}
