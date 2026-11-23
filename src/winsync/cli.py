@@ -10,13 +10,13 @@ import time
 from datetime import datetime
 
 from . import __version__
-from .config import load
+from .config import Config, load
 from .engine import plan, purge_trash, sync
 
 log = logging.getLogger("winsync")
 
 
-def _human(n: int) -> str:
+def _human(n: float) -> str:
     for unit in ("B", "KB", "MB", "GB"):
         if n < 1024:
             return f"{n:.0f} {unit}"
@@ -24,7 +24,7 @@ def _human(n: int) -> str:
     return f"{n:.1f} TB"
 
 
-def run_once(cfg, dry_run: bool) -> int:
+def run_once(cfg: Config, dry_run: bool) -> int:
     failed = 0
     for job in cfg.jobs:
         if not job.source.is_dir():
