@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "win-file-sync"
-version = "0.1.0"
+version = "0.2.0"
 description = "Đồng bộ thư mục làm việc của từng người về máy chủ trung tâm trên Windows — an toàn, không bao giờ xoá bản gốc."
 readme = "README.md"
 license = { text = "MIT" }
