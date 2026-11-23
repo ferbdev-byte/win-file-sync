@@ -7,8 +7,6 @@
 
 Đồng bộ **một chiều** thư mục làm việc của từng nhân viên về **máy chủ trung tâm**, tự chia mỗi người một thư mục. Viết cho môi trường văn phòng chạy thuần Windows: không cần Linux, không cần dịch vụ đám mây, chỉ Python.
 
-> Tách ra và tổng quát hoá từ hệ thống điều hành nội bộ mình xây cho công ty (phần đưa tài liệu của nhân viên về máy chủ).
-
 ```mermaid
 flowchart LR
     A[PC nhân viên An<br/>LamViec/] -->|winsync| H
